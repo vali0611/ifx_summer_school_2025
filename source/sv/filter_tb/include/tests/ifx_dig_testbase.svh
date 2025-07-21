@@ -147,7 +147,7 @@ function void ifx_dig_testbase::build_phase(uvm_phase phase);
 
     //------------------=====================================---------------
     //-=========================- SET CONFIGURATION OBJECTS -=========================-
-    //------------------====================/=================---------------
+    //------------------====================/******************************************************************************=================---------------
     uvm_config_db #(ifx_dig_config)::set(this, "*", "p_dig_cfg", dig_cfg);
 
     //  configuration objects for their corresponding agents
@@ -168,7 +168,7 @@ function void ifx_dig_testbase::build_phase(uvm_phase phase);
     pin_filter_generic_seq             = ifx_dig_pin_filter_uvc_generic_sequence::type_id::create("pin_filter_generic_seq", this);
     pin_filter_invalid_pulse_train_seq = ifx_dig_pin_filter_uvc_invalid_pulse_train_sequence::type_id::create("pin_filter_invalid_pulse_train_seq", this);
     pin_filter_valid_pulse_seq         = ifx_dig_pin_filter_uvc_valid_pulse_sequence::type_id::create("pin_filter_valid_pulse_seq", this);
-    
+
     regblock = ifx_dig_regblock::type_id::create("regblock");
     regblock.build();
 endfunction : build_phase
@@ -245,14 +245,15 @@ task ifx_dig_testbase::read_reg(string reg_name);
     ifx_dig_data_bus_uvc_read_sequence read_seq;
     ifx_dig_reg reg_obj = dig_env.scoreboard.regblock.get_reg_by_name(reg_name);
 
-    if(reg_obj == null) begin
-        `uvm_error("read_reg", $sformatf("Invalid register name! No register named <%s>", reg_name))
-    end else begin
-        read_seq = ifx_dig_data_bus_uvc_read_sequence::type_id::create("read_seq", this);
-        `uvm_info("read_reg", $sformatf("Read register %s", reg_name), UVM_NONE)
-        read_seq.address = reg_obj.get_address();
-        read_seq.start(dig_env.data_bus_uvc_agt.sequencer);
-    end
+    if(reg_obj==null) begin 
+        `uvm_error("read_reg", $sformatf("Invalid register name! No register named <%s>", reg_name)) //introduc o eroare 
+    end
+    else begin
+    read_seq = ifx_dig_data_bus_uvc_read_sequence::type_id::create("read_seq", this);
+    `uvm_info("read_reg", $sformatf("Read register %s", reg_name), UVM_NONE)
+    read_seq.address = reg_obj.get_address();
+    read_seq.start(dig_env.data_bus_uvc_agt.sequencer); //trebuie sa trimit secventa catre sequencer ca sa porneasca, sequencerul se afla in agent, iar agentul in environment
+    end
 endtask
 
 /*
@@ -260,25 +261,37 @@ endtask
  * or for for a given number of clock, cycles.
  */
 task ifx_dig_testbase::drive_reset(int reset_duration_ns = 100, bit use_clock_cycle = 0, int numb_of_clocks = 3);
-    if(numb_of_clocks <3) begin
-        `uvm_warning("drive_reset", "numb_of_clocks must be at least 3 clock periods")
+
+    if(numb_of_clocks < 3) begin
+
+        `uvm_warning("drive_reset", "numb_of_clocks must be atleast 3 clock periods")
         numb_of_clocks = 3;
+
     end
-    if(reset_duration_ns < 30) begin
-        `uvm_warning("drive_reset", "reset_duration_ns must be at least 30ns")
+
+    if(reset_duration_ns < 30 ) begin
+
+        `uvm_warning("drive_reset", "reset_duration_ns must be atleast 30 ns")
         reset_duration_ns = 30;
+
     end
 
     dig_cfg.dig_vif.rstn_i = 0;
+
     if(use_clock_cycle) begin
+
         repeat(numb_of_clocks) begin
             @(posedge dig_cfg.dig_vif.clk_i);
         end
+        
     end else begin
-        #(reset_duration_ns*1ns);
+        #(reset_duration_ns * 1ns);
         @(posedge dig_cfg.dig_vif.clk_i);
+        
     end
+
     dig_cfg.dig_vif.rstn_i = 1;
+
 endtask : drive_reset
 
 /*
@@ -373,6 +386,6 @@ task ifx_dig_testbase::clear_filter_status(int filt_idx = 0);
             .fields_values({1}),
             .read_after_write(1) // always read after a write to verify the operation
         );
-    end
+    end
 
 endtask

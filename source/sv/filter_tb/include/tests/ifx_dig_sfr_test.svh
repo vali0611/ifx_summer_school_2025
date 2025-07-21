@@ -36,8 +36,8 @@ class ifx_dig_sfr_test extends ifx_dig_testbase;
         super.main_phase(phase); // call default main phase, contains reset
 
         `TEST_INFO("Main phase started")
-        
-        `TEST_INFO("Star using Write_reg")
+
+        `TEST_INFO("Start using write_reg")
         write_reg_fields(
             .reg_name("FILTER_CTRL3"),
             .fields_names({"INT_EN", "FILTER_TYPE"}),
@@ -47,27 +47,25 @@ class ifx_dig_sfr_test extends ifx_dig_testbase;
         write_reg_fields(
             .reg_name("FILTER_CTRL3"),
             .fields_names({"FILTER_TYPE"}),
-            .fields_values({2'b11})
+            .fields_values({2'b11}) //modific doar filter_type ca sa vad ca restul fieldurilor raman neschimbate
         );
 
-        `TEST_INFO("start using read_reg")
+        `TEST_INFO("Start using read_reg")
         read_reg("FILTER_CTRL3");
 
         read_reg("INT_STATUS2");
 
-
         `TEST_INFO("Read and write to non existing register")
-        read_reg("NONE");
-
-        write_reg_fields(
-            .reg_name("NONE"),
+        //read_reg("NONE"); //incercam citirea dintr un registru care nu exista denumit NONE
+        /*
+        write_reg_fields( //initial nu au fost comentate liniile astea pentru a vedea in log ce se intampla
+            .reg_name("NONE"), //incercam scrierea intr un registru care nu exista
             .fields_names({"FILTER_TYPE"}),
             .fields_values({2'b11})
         );
+        */
+        `TEST_INFO("Stop using read_reg and write_reg")
 
-
-
-        `TEST_INFO("End using read_reg and Write_reg")
 
         for (int addr=0; addr < 2**`AWIDTH; addr++) begin
 

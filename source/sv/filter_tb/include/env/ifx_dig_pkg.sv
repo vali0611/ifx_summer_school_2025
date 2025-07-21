@@ -27,6 +27,7 @@ package ifx_dig_pkg;
   //=========================================================================
   // TODO: import the UVC packages
   //-------------------------------------------------------------------------
+
   import ifx_dig_regblock_pkg::*;
   import ifx_dig_data_bus_uvc_pkg::*;
   import ifx_dig_pin_filter_uvc_pkg::*;
@@ -36,10 +37,9 @@ package ifx_dig_pkg;
   //-------------------------------------------------------------------------
   //=========================================================================
 
-`include "ifx_dig_config.svh";
-`include "ifx_dig_scoreboard.svh";
-`include "ifx_dig_virtual_sequencer.svh";
-`include "ifx_dig_env.svh";
-
-
+  `include "ifx_dig_config.svh"
+  `include "ifx_dig_scoreboard.svh"
+  `include "ifx_dig_virtual_sequencer.svh"
+  `include "ifx_dig_env.svh"
+  
 endpackage

@@ -51,7 +51,7 @@ class ifx_dig_regblock extends uvm_object;
             end
         end
         return null; // no register with the given name
-    endfunction
+    endfunction
 
 
     /*

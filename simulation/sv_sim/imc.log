@@ -1,0 +1,4 @@
+IMC(64): 15.20-s069: (c) Copyright 1995-2019 Cadence Design Systems Inc - Coverage engine version: 15.20-s069
+imc: *E,DBERR: Error loading database file ./cov_work/scope/icc_7d919086_7a483838.ucm:
+serialization exception.
+imc: *E,INVDT: Valid data file not found for run directory ./cov_work/scope/test_sv1234. Specify a valid run directory with correct ucm, ucd files and rerun the command.	   

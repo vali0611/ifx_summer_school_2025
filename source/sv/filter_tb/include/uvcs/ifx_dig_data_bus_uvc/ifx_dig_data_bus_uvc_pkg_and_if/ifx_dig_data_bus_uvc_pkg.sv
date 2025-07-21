@@ -24,7 +24,7 @@ package ifx_dig_data_bus_uvc_pkg;
   `include "ifx_dig_data_bus_uvc_config.svh"
   // TODO: Include data bus uvc files
 
-`include "ifx_dig_data_bus_uvc_seq_item.svh"
+  `include "ifx_dig_data_bus_uvc_seq_item.svh"
   `include "ifx_dig_data_bus_uvc_sequence_lib.svh"
   `include "ifx_dig_data_bus_uvc_sequencer.svh"
   `include "ifx_dig_data_bus_uvc_driver.svh"

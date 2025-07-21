@@ -149,7 +149,7 @@ module ifx_dig_top;
     //===========================CLOCKS=============================
     // TODO: Modify generate_clock task call so that a 100 MHz will be generated
     initial begin
-        generate_clock("ns",10);
+        generate_clock("ns", 10);
     end
 
     // TODO: Write a task capable of generating a clock signal
@@ -165,7 +165,7 @@ module ifx_dig_top;
             #(clk_half_per_ps * 1ps) clk = !clk;
         end
 
-    endtask
+    endtask
 
     //===========================================================================
     // pass virtual interfaces to the testbench
@@ -178,5 +178,5 @@ module ifx_dig_top;
         // interfaces for UVCs
         uvm_config_db #(virtual ifx_dig_data_bus_uvc_interface)::set(uvm_top, "data_bus_uvc_agt", "vif", data_uvc_if);
 
-    end
+    end
 endmodule

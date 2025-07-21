@@ -1,0 +1,4 @@
+10:26:36:0282 [com.cadence.mdv.imc.Main] [main] INFO  - Binding debug tools http on port: 45687
+10:26:36:0603 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Valid data file not found for run directory ./cov_work/scope/test_sv1234. Specify a valid run directory with correct ucm, ucd files and rerun the command.	   
+10:26:36:0603 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Error loading database file ./cov_work/scope/icc_7d919086_7a483838.ucm:
+serialization exception.
