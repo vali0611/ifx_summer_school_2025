@@ -24,6 +24,7 @@ package ifx_dig_test_pkg;
   import ifx_dig_pin_filter_uvc_pkg::*;
   import ifx_dig_pkg::*;
   import ifx_dig_regblock_pkg::*;
+  
 
   `include "ifx_dig_testbase.svh"
   `include "ifx_dig_hello_world.svh"
@@ -32,6 +33,7 @@ package ifx_dig_test_pkg;
   `include "ifx_dig_test_filter_rising.svh"
   `include "ifx_dig_test_filter_toggle.svh"
   //`include "ifx_dig_test_regmodel_showcase.svh"
+    `include "ifx_dig_interrupt_en_test.svh"
 
 
 endpackage
