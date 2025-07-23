@@ -37,13 +37,13 @@ function new(string name = "ifx_dig_interrupt_en_test", uvm_component parent);
             );
         `TEST_INFO($sformatf("Drive a valid pulse length on filter: %0d", filter_list[ifilt]))
             pin_filter_valid_pulse_seq.start(dig_env.v_seqr.p_pin_filter_uvc_seqr[filter_list[ifilt] - 1]);
+            `WAIT_NS(20)
         read_filter_status(0);
             clear_filter_status(filter_list[ifilt]);
             `WAIT_NS(100)
         end
             `WAIT_NS(100)
 
-            
     phase.drop_objection(this);
     endtask
 endclass

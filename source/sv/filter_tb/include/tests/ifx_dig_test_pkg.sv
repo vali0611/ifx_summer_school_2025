@@ -34,6 +34,7 @@ package ifx_dig_test_pkg;
   `include "ifx_dig_test_filter_toggle.svh"
   //`include "ifx_dig_test_regmodel_showcase.svh"
     `include "ifx_dig_interrupt_en_test.svh"
+    `include "ifx_dig_INT_ST.svh"
 
 
 endpackage

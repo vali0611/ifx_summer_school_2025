@@ -52,7 +52,7 @@ class ifx_dig_test_filter_toggle extends ifx_dig_testbase;
         end
         filter_list.shuffle();
 
-
+        repeat(5) begin
         // TODO: go through the filters and test them as described in requirement
 
         foreach(filter_list[idx]) begin
@@ -80,9 +80,11 @@ class ifx_dig_test_filter_toggle extends ifx_dig_testbase;
             `WAIT_NS(100)
         end
 
+        `TEST_INFO($sformatf("\ncg_filtering_type = %f\n", dig_env.scoreboard.cg_filtering_type.get_coverage()))
+        end
+
         phase.drop_objection(this);
     endtask
-
 
 
 endclass

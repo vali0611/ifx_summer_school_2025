@@ -1,0 +1,104 @@
+Operating system: Linux
+                  0.0.0 Linux 5.14.0-427.28.1.el9_4.x86_64 #1 SMP PREEMPT_DYNAMIC Fri Aug 2 03:44:10 EDT 2024 x86_64
+CPU: amd64
+     family 6 model 45 stepping 7
+     32 CPUs
+
+GPU: UNKNOWN
+
+Crash reason:  DUMP_REQUESTED
+Crash address: 0x7f080cdc5406
+Process uptime: not available
+
+Thread 0 (crashed)
+ 0  libcbreakpad.so + 0x36406
+    rax = 0x0000000000000000   rdx = 0x0000000000000000
+    rcx = 0x00007f080cdc3cb2   rbx = 0x00007f07ff4306d0
+    rsi = 0x0000000000000001   rdi = 0x00007f07ff430058
+    rbp = 0x00007f07ff430610   rsp = 0x00007f07ff42ffc0
+     r8 = 0x0000000000000000    r9 = 0x0000000000000000
+    r10 = 0x0000000046f09109   r11 = 0x00007f07ff4300e4
+    r12 = 0x000000000000001e   r13 = 0x00007f07ff4318d8
+    r14 = 0x00007f07ff430650   r15 = 0x0000000000000000
+    rip = 0x00007f080cdc5406
+    Found by: given as instruction pointer in context
+ 1  libcbreakpad.so + 0x34672
+    rbp = 0x00007f07ff430760   rsp = 0x00007f07ff430620
+    rip = 0x00007f080cdc3672
+    Found by: previous frame's frame pointer
+ 2  xmsim + 0x19a6c28
+    rbp = 0x00007f07ff4318c0   rsp = 0x00007f07ff430770
+    rip = 0x0000000001da6c28
+    Found by: previous frame's frame pointer
+
+Loaded modules:
+0x00400000 - 0x02a90fff  xmsim  ???  (main)  (WARNING: No symbols, xmsim, F6652DA7DB0148CFF88457DE67BC78ED0)
+0x7f07f74c5000 - 0x7f07f7925fff  libucis.so  ???
+0x7f07f93b8000 - 0x7f07f93c7fff  waves.dsn  ???
+0x7f07f93c8000 - 0x7f07f9414fff  libuvmapi_sv.so  ???
+0x7f07f9436000 - 0x7f07f948bfff  libuvmapi_generic.so  ???
+0x7f07f9abd000 - 0x7f07f9ac3fff  gconv-modules.cache  ???
+0x7f07f9b4f000 - 0x7f07f9b60fff  libz_sh.so  ???
+0x7f07fa630000 - 0x7f07fa634fff  libxdt.so  ???
+0x7f07fa93f000 - 0x7f07fa951fff  libsdi-verilog-nld.so  ???
+0x7f07fa959000 - 0x7f07fa971fff  libsdi2-sst2-nld.so  ???
+0x7f07fa97b000 - 0x7f07fa9d9fff  libdwapi.so  ???
+0x7f07faa74000 - 0x7f07faa84fff  libz.so.1.2.11  ???
+0x7f07faa8e000 - 0x7f07fb985fff  librnc.so  ???
+0x7f07ff435000 - 0x7f07ff549fff  libStrapNC.so  ???
+0x7f07ff600000 - 0x7f080cb2ffff  locale-archive  ???
+0x7f080cbb3000 - 0x7f080cc45fff  libdcapi.so  ???
+0x7f080ccf6000 - 0x7f080cd85fff  libxmjudy.so.1.0.3  ???
+0x7f080cd8f000 - 0x7f080cde2fff  libcbreakpad.so  ???  (WARNING: No symbols, libcbreakpad.so, 1A0F7F62185D2C02CF86A6E6B7CC82920)
+0x7f080ce00000 - 0x7f080cf9cfff  libc.so.6  ???
+0x7f080d00c000 - 0x7f080d013fff  libuvmpli.so  ???
+0x7f080d019000 - 0x7f080d01afff  librt.so.1  ???
+0x7f080d01e000 - 0x7f080d020fff  libuvmdpi.so  ???
+0x7f080d024000 - 0x7f080d025fff  _sv_export.so (deleted)  ???
+0x7f080d029000 - 0x7f080d03ffff  libml_uvm.so  ???
+0x7f080d07f000 - 0x7f080d092fff  libgcc_s.so.1  ???
+0x7f080d099000 - 0x7f080d217fff  libstdc++.so.6.0.28  ???
+0x7f080d2c4000 - 0x7f080d340fff  libm.so.6  ???
+0x7f080d39f000 - 0x7f080d3a0fff  libdl.so.2  ???
+0x7f080d3a4000 - 0x7f080d3a5fff  libpthread.so.0  ???
+0x7f080d3a9000 - 0x7f080d3affff  libunicovdirmgr.so  ???
+0x7f080d3b6000 - 0x7f080d3defff  ld-linux-x86-64.so.2  ???
+0x7ffcae1fb000 - 0x7ffcae1fcfff  linux-gate.so  ???
+
+******BACKTRACE*****
+use_backtrace() (libcbreakpad.so) [0x7f080cdc31a3]
+cbpad_generate_dump_on_demand (libcbreakpad.so) [0x7f080cdc3630]
+vserror (xmsim) [0x1da6c28]
+serror (xmsim) [0x1da82fd]
+sv_seghandler_aux (xmsim) [0xde3237]
+sv_seghandler (xmsim) [0xde39dd]
+__restore_rt (libc.so.6) [0x7f080ce3ebf0]
+sss_load_trg_data (xmsim) [0xe8002d]
+sss_trdrv_type (xmsim) [0xe75344]
+ssl_net_type (xmsim) [0xf952ac]
+cov_tog_isvalid_net (xmsim) [0x171b06a]
+cov_tog_dump_vlog_helper (xmsim) [0x172ca5d]
+cov_tog_dump (xmsim) [0x172f24c]
+cov_data_create_instance.part.0 (xmsim) [0x17732c1]
+sslu_traverse_scopes (xmsim) [0x1063380]
+traverseAllDut (xmsim) [0x174b859]
+cov_data_dump (xmsim) [0x1775910]
+cover_dump (xmsim) [0x8e4a18]
+nc_prepare_to_exit (xmsim) [0x80efc4]
+nc_fini0 (xmsim) [0x80f7ef]
+Tcl_Exit (xmsim) [0x1606de4]
+exit_command (xmsim) [0x83589a]
+cmd_wrapper (xmsim) [0xcff187]
+TclInvokeStringCommand (xmsim) [0x1578b8b]
+TclNRRunCallbacks (xmsim) [0x157dad7]
+TclEvalEx (xmsim) [0x157fd3d]
+Tcl_EvalEx (xmsim) [0x15804c3]
+Tcl_Eval (xmsim) [0x158050c]
+cmd_tcl_run (xmsim) [0xd0387f]
+xncmain (xmsim) [0x80de68]
+ncmain (xmsim) [0x80c81f]
+main (xmsim) [0x2999a4c]
+__libc_start_call_main (libc.so.6) [0x7f080ce295d0]
+__libc_start_main_impl (libc.so.6) [0x7f080ce29680]
+_start (xmsim) [0x726f1b]
+******BACKTRACE END*****

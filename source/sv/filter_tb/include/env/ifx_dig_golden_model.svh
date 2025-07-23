@@ -190,11 +190,14 @@ task model_data_out();
 
         case(filt_packet.filter_validity)
             FILT_VALID: begin
-                // TODO: Implement logic for modeling the filter output update and interrupt update (if enabled)
                 data_out_gm[filt_packet.id] = filt_packet.filt_edge == FILT_RISE_EDGE ? 1 : 0;
                 if(regblock.get_field_value($sformatf("FILTER_CTRL%0d", filt_packet.id+1), "INT_EN")) begin
                     filt_int_req_b[filt_packet.id] = 1; // set the interrupt request for the filter
                 end
+                cg_filtering_type.sample(
+                    .id(filt_packet.id),
+                .filter_type(regblock.get_field_value($sformatf("FILTER_CTRL%0d",filt_packet.id +1), "FILTER_TYPE"))
+                );
             end
 
             FILT_NONE: begin
